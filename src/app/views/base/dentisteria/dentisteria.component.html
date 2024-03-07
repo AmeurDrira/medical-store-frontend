@@ -1,0 +1,23 @@
+<c-row>
+  @for (item of carts; track item.id) {
+    <c-card style="width: 18rem;" class="m-1">
+      <img cCardImg="top" src="./assets/dentisteria/{{item.image}}" width="300" height="200" class="mt-5 ">
+      <c-card-body>
+        <h5 cCardTitle>{{ item.title }}</h5>
+
+        <c-row style="bottom: initial">
+          <c-col>
+            <select id="selectedQuantity" [(ngModel)]=item.quantity cSelect class="mb-3" sizing="sm">
+              <option>0</option>
+              <option *ngFor="let qte of quantities" [value]="qte">{{ qte }}</option>
+            </select>
+          </c-col>
+          <c-col>
+            <button cButton color="primary" (click)="addToCard()">add</button>
+          </c-col>
+
+        </c-row>
+      </c-card-body>
+    </c-card>
+  }
+</c-row>

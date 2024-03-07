@@ -1,0 +1,56 @@
+<c-row ngPreserveWhitespaces>
+  <!--  <c-col xs="12">-->
+  <!--    <app-docs-callout href="components/accordion" name="Accordion"></app-docs-callout>-->
+  <!--  </c-col>-->
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>Medical Orders</strong>
+      </c-card-header>
+      <c-card-body>
+        <!--        <app-docs-example href="components/accordion">-->
+        @for (order of orders; track order; let index = $index) {
+          <c-accordion [alwaysOpen]="false" [flush]="false" class="shadow rounded-2">
+            <c-accordion-item #item0="cAccordionItem" [visible]="false">
+              <ng-template cTemplateId="accordionHeaderTemplate">
+                <button (click)="item0.toggleItem()" [collapsed]="!item0.visible" cAccordionButton cBgColor="info">
+                  {{ order.user.firstName }} {{ order.user.lastName }} Box {{ index }}
+                </button>
+              </ng-template>
+              <ng-template cTemplateId="accordionBodyTemplate">
+                <div cBgColor="light" class="accordion-body">
+                  <table [striped]="true" cTable>
+                    <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">ArticleId</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @for (article of order.cart; track article; let index = $index) {
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <tr>
+                          <th scope="row">{{ index }}</th>
+                          <td>{{ article.id }}</td>
+                          <td>{{ article.title }}</td>
+                          <td>{{ article.quantity }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </ng-template>
+            </c-accordion-item>
+
+
+          </c-accordion>
+        }
+        <!--        </app-docs-example>-->
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
